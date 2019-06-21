@@ -1,0 +1,83 @@
+@import "var.scss";
+@import "mixin.scss";
+
+.box {
+     width: $width;
+     height: $height;
+  //background-color: $background;
+     @include center
+}
+
+.heng {
+  position: absolute;
+  left: $r;
+  height: 1px;
+  width: $width - $r*2;
+  background: linear-gradient(to right , orange , green);
+  transform: translate3d(-300%, 0,0);
+  animation:  slide 1s ease 1 forwards;
+}
+.shu {
+  position: absolute;
+  top: $r;
+  width: 1px;
+  height: $width - $r*2;
+  background: linear-gradient(yellow, red ,purple);
+  transform: translate3d(0, -300%,0);
+  animation:  down 1s ease 1 forwards;
+}
+ @keyframes down {
+    from {
+      transform: translate3d(0, -300%,0);
+
+    }
+   to {
+     transform: translate3d(0, 0,0);
+
+   }
+ }
+@keyframes slide {
+  from {
+    transform: translate3d(-300%, 0,0);
+
+  }
+  to {
+    transform: translate3d(0, 0,0);
+
+  }
+}
+
+@for $i from 1  through 15 {
+  .heng:nth-of-type(#{$i}) {
+        animation-delay: 100ms * $i;
+       top: (2*$i - 1) *$r
+
+  }
+}
+
+@for $j from 1  through 15 {
+  .shu:nth-of-type(#{$j}) {
+    animation-delay: 100ms * $j;
+
+    left: (2*$j - 1) *$r
+
+  }
+}
+
+.chess {
+  width: $r * 2;
+  height: $r * 2;
+  border-radius: 50%;
+  float: left;
+  position:relative;
+  z-index: 999;
+
+}
+.black {
+  background-color: black;
+  box-shadow: 2px 12px 22px rgba(7,17,27,0.3);
+}
+.green {
+  background-color: darkgreen;
+  box-shadow: 2px 12px 22px rgba(7,17,27,0.3);
+}
